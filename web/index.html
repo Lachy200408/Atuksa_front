@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Atuksa | Catálogo</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <script type="module">
+      const RESOURCE_URL = "";
+
+      const $ = (selector) => document.querySelector(selector);
+      const fetchCatalog = (section, callback) => {
+        fetch(`${RESOURCE_URL}/${section}`)
+          .then((res) => res.json())
+          .then(callback);
+      };
+
+      const renderCatalog = (catalog) => {
+        const catalogList = document.createElement("ul");
+        catalog.forEach((item) => {
+          const catalogItem = document.createElement("li");
+          catalogItem.innerHTML = `<a href="${item.url}">${item.title}</a>`;
+          catalogList.appendChild(catalogItem);
+        });
+        $("#catalog").appendChild(catalogList);
+      };
+    </script>
+
+    <meta
+      name="description"
+      content="El mejor catálogo de juegos para PC, películas y series en español en la Habana."
+    />
+    <meta
+      name="keywords"
+      content="juegos, películas, series, catálogo, habana, español, atuksa"
+    />
+    <meta name="author" content="Lázaro Parra González" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content="Atuksa | Catálogo" />
+    <meta
+      property="og:description"
+      content="El mejor catálogo de juegos para PC, películas y series en español en la Habana."
+    />
+    <meta property="og:image" content="/favicon.svg" />
+    <meta property="og:url" content="https://atuksa.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://atuksa.com/" />
+    <meta property="twitter:title" content="Atuksa | Catálogo" />
+    <meta
+      property="twitter:description"
+      content="El mejor catálogo de juegos para PC, películas y series en español en la Habana."
+    />
+    <meta property="twitter:image" content="/favicon.svg" />
+  </head>
+  <body>
+    <header role="banner" aria-details="This is the header">
+      <hgroup>
+        <h1>Atuksa</h1>
+        <h3>Juegos, Pelis y Series</h3>
+      </hgroup>
+      <nav>
+        <ul role="navigation">
+          <li><a href="/games">games</a></li>
+        </ul>
+      </nav>
+    </header>
+  </body>
+</html>
