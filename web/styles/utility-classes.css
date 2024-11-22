@@ -1,0 +1,128 @@
+/** -- Utility classes */
+
+/** -- Sections */
+
+.large-section {
+  width: 100%;
+  min-height: 80dvh;
+}
+
+/** Font Sizes */
+
+.text-xs {
+  font-size: 0.5rem;
+}
+
+.text-sm {
+  font-size: 0.75rem;
+}
+
+.text-md {
+  font-size: 1.5rem;
+}
+
+.text-lg {
+  font-size: 2rem;
+}
+
+.text-xl {
+  font-size: 3rem;
+}
+
+/** -- Background & Text Colors */
+
+.bg-primary {
+  background-color: var(--primary-color);
+}
+
+.bg-secondary {
+  background-color: var(--secondary-color);
+}
+
+.bg-tertiary {
+  background-color: var(--tertiary-color);
+}
+
+.bg-quaternary {
+  background-color: var(--quaternary-color);
+}
+
+.bg-orange {
+  background-color: var(--orange-color);
+}
+
+.bg-dark-orange {
+  background-color: var(--dark-orange-color);
+}
+
+.bg-blue {
+  background-color: var(--blue-color);
+}
+
+.bg-dark-blue {
+  background-color: var(--dark-blue-color);
+}
+
+.bg-light {
+  background-color: var(--light-color);
+}
+
+.bg-light-secondary {
+  background-color: var(--light-secondary-color);
+}
+
+.bg-dark {
+  background-color: var(--dark-color);
+}
+
+.bg-dark-secondary {
+  background-color: var(--dark-secondary-color);
+}
+
+.text-primary {
+  color: var(--primary-color);
+}
+
+.text-secondary {
+  color: var(--secondary-color);
+}
+
+.text-tertiary {
+  color: var(--tertiary-color);
+}
+
+.text-quaternary {
+  color: var(--quaternary-color);
+}
+
+.text-orange {
+  color: var(--orange-color);
+}
+
+.text-dark-orange {
+  color: var(--dark-orange-color);
+}
+
+.text-blue {
+  color: var(--blue-color);
+}
+
+.text-dark-blue {
+  color: var(--dark-blue-color);
+}
+
+.text-light {
+  color: var(--light-color);
+}
+
+.text-light-secondary {
+  color: var(--light-secondary-color);
+}
+
+.text-dark {
+  color: var(--dark-color);
+}
+
+.text-dark-secondary {
+  color: var(--dark-secondary-color);
+}
