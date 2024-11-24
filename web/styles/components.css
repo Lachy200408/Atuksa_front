@@ -11,6 +11,7 @@
 
 .catalog-section > div {
   position: relative;
+  min-width: var(--xs);
   max-width: min(var(--lg), 100%);
 }
 
@@ -29,7 +30,7 @@
   transition: all 0.3s ease-in-out;
 }
 
-.catalog-section .catalog-list > li > figure {
+.catalog-section .catalog-list > li figure {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -39,16 +40,17 @@
   border-radius: 0.5rem;
   background-color: var(--fg-color);
   color: var(--bg-color);
+  content-visibility: auto;
 }
 
-.catalog-section .catalog-list > li > figure > img {
+.catalog-section .catalog-list > li figure > img {
   width: 13.5rem;
   height: auto;
   object-fit: cover;
   object-position: center;
 }
 
-.catalog-section .catalog-list > li > figure > figcaption {
+.catalog-section .catalog-list > li figure > figcaption {
   text-align: center;
 }
 

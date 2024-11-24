@@ -6,66 +6,7 @@
     <title>Atuksa | Catálogo</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    <script type="module">
-      const RESOURCE_URL = "https://atuksa-catalog.onrender.com";
-
-      const $ = (selector) => document.querySelector(selector);
-      const $$ = (selector) => document.querySelectorAll(selector);
-
-      const fetchCatalog = (section, callback) => {
-        fetch(`${RESOURCE_URL}/${section}`)
-          .then((res) => res.json())
-          .then(callback);
-      };
-      const renderCatalog = (section, catalog) => {
-        const $sectionList = $(`.${section}-section .catalog-list`);
-        catalog.forEach((item) => {
-          const catalogItem = document.createElement("li");
-          catalogItem.innerHTML = `
-						<figure>
-							<img
-								src="${item.image}"
-								alt="${item.name}"
-								width="192" height="260"
-								aria-labelledby="${item.name}"
-								aria-label="${item.name}"
-								title="${item.name}"
-								loading="lazy"
-							/>
-							<figcaption>${item.name}</figcaption>
-						</figure>
-					`;
-          $sectionList.appendChild(catalogItem);
-        });
-      };
-
-      fetchCatalog("games", (data) => {
-        renderCatalog("games", data);
-      });
-
-      const getCatalogSectionMovement = (callback) => {
-        const handleClick = (e) => {
-          const $button = e.target;
-          const $sectionList =
-            $button.parentElement.querySelector(".catalog-list");
-
-          callback($sectionList);
-        };
-        return handleClick;
-      };
-      const rotateArrayPrev = getCatalogSectionMovement(($sectionList) => {
-        $sectionList.prepend($sectionList.lastElementChild);
-      });
-      const rotateArrayNext = getCatalogSectionMovement(($sectionList) => {
-        $sectionList.append($sectionList.firstElementChild);
-      });
-      $$(".catalog-section__prev-button").forEach(
-        (button) => (button.onclick = rotateArrayPrev)
-      );
-      $$(".catalog-section__next-button").forEach(
-        (button) => (button.onclick = rotateArrayNext)
-      );
-    </script>
+    <script src="/scripts/landing.js" type="module"></script>
 
     <link rel="stylesheet" href="/styles/index.css" />
     <link rel="stylesheet" href="/styles/utility-classes.css" />
@@ -106,7 +47,7 @@
       </hgroup>
       <nav>
         <ul>
-          <li><a href="/es/">Catálogo</a></li>
+          <li><a href="/es/" class="active-link">Catálogo</a></li>
           <li><a href="/es/games">Juegos</a></li>
           <li><a href="/es/movies">Pelis</a></li>
           <li><a href="/es/series">Series</a></li>

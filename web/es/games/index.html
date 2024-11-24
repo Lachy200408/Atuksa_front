@@ -6,8 +6,10 @@
     <title>Atuksa | Juegos</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    <script type="module"></script>
+    <script src="/scripts/games.js" type="module"></script>
+
     <link rel="stylesheet" href="/styles/index.css" />
+    <link rel="stylesheet" href="/styles/utility-classes.css" />
 
     <meta
       name="description"
@@ -45,7 +47,7 @@
       <nav>
         <ul>
           <li><a href="/es/">Catálogo</a></li>
-          <li><a href="/es/games">Juegos</a></li>
+          <li><a href="/es/games" class="active-link">Juegos</a></li>
           <li><a href="/es/movies">Pelis</a></li>
           <li><a href="/es/series">Series</a></li>
         </ul>
@@ -83,7 +85,11 @@
       </svg>
     </header>
 
-    <main></main>
+    <main aria-details="This is the catalog main">
+      <article class="large-section">
+        <ul class="games-list"></ul>
+      </article>
+    </main>
 
     <footer aria-details="This is the footer">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1366 78.84">
