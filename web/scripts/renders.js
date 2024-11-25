@@ -25,3 +25,22 @@ export const minGameRender = ({ name, image }) => `
 		<figcaption>${name}</figcaption>
 	</figure>
 `
+
+export const mediumGameRender = ({ name, image, price }) => `
+	<figure>
+		<img
+			src="${image}"
+			alt="${name}"
+			width="192"
+			height="261"
+			loading="lazy"
+			aria-details="This is the game ${name}"
+			aria-label="${name}"
+			title="${name}"
+		/>
+		<figcaption>
+			<p>${name}</p>
+			<p>${price}</p>
+		</figcaption>
+	</figure>
+`

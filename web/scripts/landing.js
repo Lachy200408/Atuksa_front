@@ -6,7 +6,7 @@ import { link } from '/scripts/wrappers.js'
 fetchCatalog('games', (data) => {
   renderList($('.games-section .catalog-list'), data, (item) =>
     link(minGameRender(item), {
-      href: `/es/games/${item.id}`,
+      href: `/es/games/`, //* TODO: Add the id
       class: 'no-under',
     }).toStr()
   )
