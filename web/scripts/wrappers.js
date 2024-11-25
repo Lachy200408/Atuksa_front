@@ -10,7 +10,10 @@ const createWrapper = (name) => {
 
     if (!child) return wrapper
     if (typeof child === 'string') wrapper.innerHTML = child
-    if (typeof child === 'object') wrapper.appendChild(child)
+    if (typeof child === 'object' && child.length === undefined)
+      wrapper.appendChild(child)
+    if (typeof child === 'object' && child.length !== undefined)
+      wrapper.append(...child)
 
     const aditions = {
       toStr: function () {

@@ -18,7 +18,7 @@
 .catalog-section .catalog-list {
   list-style: none;
   display: flex;
-  align-items: center;
+  align-items: last baseline;
   justify-content: center;
   gap: 1rem;
   overflow: hidden;
@@ -27,7 +27,17 @@
 }
 
 .catalog-section .catalog-list > li {
-  transition: all 0.3s ease-in-out;
+  transform: scale(0.95);
+  transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+}
+
+.catalog-section .catalog-list > li:hover {
+  transform: scale(1);
+}
+
+.catalog-section .catalog-list > li:has(~ li:hover),
+.catalog-section .catalog-list > li:hover ~ li {
+  filter: brightness(0.75);
 }
 
 .catalog-section .catalog-list > li figure {
@@ -52,6 +62,7 @@
 
 .catalog-section .catalog-list > li figure > figcaption {
   text-align: center;
+  height: 2.8rem;
 }
 
 .catalog-section button {
