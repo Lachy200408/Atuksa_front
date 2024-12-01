@@ -1,100 +1,497 @@
-/** -- Catalog Section */
+@layer components {
+  /** -- Forms aside */
 
-.catalog-section {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 3rem;
-  max-width: 100%;
-}
+  .forms-aside {
+    display: flex;
+    place-items: start;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+  .forms-aside > *:not(.filter-form, .request-form) {
+    min-width: 256px;
+    width: 40%;
+  }
+  .forms-aside > .filter-form,
+  .forms-aside > .request-form {
+    width: 100%;
+  }
+  @media only screen and (max-width: 768px) {
+    .forms-aside {
+      justify-content: space-around;
+    }
+  }
 
-.catalog-section > div {
-  position: relative;
-  min-width: var(--xs);
-  max-width: min(var(--lg), 100%);
-}
+  /** -- Request Form */
 
-.catalog-section .catalog-list {
-  list-style: none;
-  display: flex;
-  align-items: last baseline;
-  justify-content: center;
-  gap: 1rem;
-  overflow: hidden;
-  max-width: min(var(--lg), 80%);
-  margin-inline: auto;
-}
+  .request-form,
+  .request-form label {
+    display: grid;
+    place-items: center;
+    gap: 0.5rem;
+  }
 
-.catalog-section .catalog-list > li {
-  transform: scale(0.95);
-  transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
-}
+  .request-form button {
+    width: max-content;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    background-color: var(--primary-color);
+    color: var(--dark-color);
+    transition: transform 0.1s linear;
+  }
+  .request-form button:hover {
+    filter: brightness(0.95);
+  }
+  .request-form button:active {
+    transform: scale(0.9);
+  }
 
-.catalog-section .catalog-list > li:hover {
-  transform: scale(1);
-}
+  /** -- Search Form */
 
-.catalog-section .catalog-list > li:has(~ li:hover),
-.catalog-section .catalog-list > li:hover ~ li {
-  filter: brightness(0.75);
-}
+  .search-form,
+  .search-form label {
+    display: grid;
+    place-items: center;
+    gap: 0.5rem;
+  }
+  .search-form .search-input {
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border: 2px solid var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .search-form .search-input input {
+    appearance: none;
+    all: unset;
+    cursor: pointer;
+    text-align: start;
+  }
+  .search-form .search-input button {
+    color: var(--fg-color);
+  }
 
-.catalog-section .catalog-list > li figure {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-  background-color: var(--fg-color);
-  color: var(--bg-color);
-  content-visibility: auto;
-}
+  /** -- Filter Form */
 
-.catalog-section .catalog-list > li figure > img {
-  width: 13.5rem;
-  height: auto;
-  object-fit: cover;
-  object-position: center;
-}
+  label:has(+ .filter-form) {
+    display: grid;
+    place-items: center;
+  }
+  label:has(+ .filter-form) {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: max-content;
+    cursor: pointer;
+  }
+  label:has(+ .filter-form) input,
+  label:has(+ .filter-form) input::before,
+  label:has(+ .filter-form) input::after {
+    all: unset;
+    appearance: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+    width: 1.5rem;
+    aspect-ratio: 1;
+    opacity: 0.75;
+  }
+  label:has(+ .filter-form) input:hover,
+  label:has(+ .filter-form) input:hover::before,
+  label:has(+ .filter-form) input:hover::after {
+    opacity: 1;
+  }
+  label:has(+ .filter-form) input {
+    position: relative;
+    border: 2px solid var(--fg-color);
+    border-radius: 50% 30% 50% 30%;
+    transform: rotateZ(45deg);
+    width: 1rem;
+  }
+  label:has(+ .filter-form) input::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    width: 75%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background-color: var(--fg-color);
+  }
+  label:has(+ .filter-form) input::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    height: 2rem;
+    width: 0.25rem;
+    border-radius: 30%;
+    background-color: var(--fg-color);
+    transform: rotateZ(-15deg);
+  }
+  label:has(+ .filter-form) input:checked::after {
+    content: unset;
+  }
+  .filter-form {
+    display: none;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    padding: 1rem;
+    overflow: auto hidden;
+  }
+  label:has(+ .filter-form):has(input[type='checkbox']:checked) + .filter-form {
+    display: grid;
+  }
+  .filter-form select {
+    border: none;
+    background: none;
+    border: 2px solid var(--primary-color);
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    background-color: var(--bg-color);
+    color: var(--fg-color);
+    cursor: pointer;
+  }
+  .filter-form select:hover {
+    filter: brightness(0.95);
+  }
+  .filter-form #filter-genres {
+    grid-column: span 2;
+  }
+  .filter-form #filter-genres {
+    border: none;
+    outline: none;
+    border: 2px solid var(--primary-color);
+    border-radius: 0.5rem;
+    padding: 1rem;
+  }
+  .filter-form #filter-genres legend {
+    background-color: var(--bg-color);
+    padding-inline: 1rem;
+  }
+  .filter-form #filter-genres {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 10rem);
+    justify-content: center;
+    gap: 1rem;
+  }
+  .filter-form #filter-genres > label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border: 2px solid var(--primary-color);
+    border-radius: 0.5rem;
+    background-color: var(--bg-color);
+    color: var(--fg-color);
+    cursor: pointer;
+  }
+  .filter-form > label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    border: 2px solid var(--primary-color);
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    background-color: var(--bg-color);
+    color: var(--fg-color);
+    cursor: pointer;
+  }
+  .filter-form > label:hover {
+    filter: brightness(0.95);
+  }
 
-.catalog-section .catalog-list > li figure > figcaption {
-  text-align: center;
-  height: 2.8rem;
-}
+  /** -- List with fade in-out animation */
 
-.catalog-section button {
-  position: absolute;
-  top: 50%;
-  translate: 0 -50%;
-  display: grid;
-  place-items: center;
-  font-size: larger;
-  width: 3rem;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  border: none;
-  background: none;
-  cursor: pointer;
-  background-color: var(--tertiary-color);
-  color: var(--dark-color);
-}
+  .list-fade > li {
+    opacity: 0;
+    animation-name: fadeIn;
+    animation-duration: 0.2s;
+    animation-timeline: view(90% 5%);
+    animation-delay: 0.1s;
+    animation-direction: alternate;
+    animation-fill-mode: both;
+  }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 
-.catalog-section button:hover {
-  box-shadow: 0 0 0.5rem var(--tertiary-color);
-}
+  /** -- In Cart */
 
-.catalog-section button:active {
-  box-shadow: none;
-  transform: scale(0.9);
-}
+  .in-cart {
+    position: relative;
+  }
+  .in-cart::after {
+    content: '✓';
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-weight: bold;
+    font-size: larger;
+    width: 2rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background-color: var(--blue-color);
+    display: grid;
+    place-items: center;
+  }
+  .in-cart::before {
+    content: 'Añadido al carrito';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    background-color: var(--primary-color);
+    color: var(--dark-color);
+  }
 
-.catalog-section .catalog-section__prev-button {
-  left: 1rem;
-}
+  /** -- Game info */
 
-.catalog-section .catalog-section__next-button {
-  right: 1rem;
+  .games-sidebar {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    max-height: 288px;
+    overflow: hidden auto;
+    border-top: 1px solid var(--tertiary-color);
+    background-color: var(--bg-color);
+  }
+  .game-info {
+    position: relative;
+    display: grid;
+    justify-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    color: var(--fg-color);
+  }
+  .game-info > .close-info-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 2rem;
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    border-radius: 50%;
+    background-color: var(--tertiary-color);
+    color: var(--dark-color);
+  }
+  .game-info > .close-info-btn:hover {
+    box-shadow: 0 0 0.5rem var(--tertiary-color);
+  }
+  .game-info > .close-info-btn:active {
+    transform: scale(0.9);
+  }
+
+  /** -- Red Button */
+
+  .red-button {
+    width: max-content;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    background-color: var(--red-color);
+    color: inherit;
+    font-weight: bold;
+    transition: transform 0.1s linear;
+  }
+  .red-button:hover {
+    opacity: 0.8;
+  }
+  .red-button:active {
+    transform: scale(0.9);
+  }
+
+  /** -- Blue Button */
+
+  .blue-button {
+    width: max-content;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    background-color: var(--blue-color);
+    color: inherit;
+    font-weight: bold;
+    transition: transform 0.1s linear;
+  }
+  .blue-button:hover {
+    opacity: 0.8;
+  }
+  .blue-button:active {
+    transform: scale(0.9);
+  }
+
+  /** -- Theme Button */
+
+  .theme-btn {
+    --light-btn-image: url('/assets/brightness.svg');
+    --dark-btn-image: url('/assets/moon-stars.svg');
+    --btn-image: var(--light-btn-image);
+
+    width: 2rem;
+    aspect-ratio: 1;
+    border-radius: 0.5rem;
+    background: var(--btn-image);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 75%;
+  }
+  .theme-btn:hover {
+    outline: 1px solid var(--dark-color);
+  }
+  .theme-btn.dark {
+    --btn-image: var(--dark-btn-image);
+  }
+  .theme-btn[data-theme='dark']:not(.dark) {
+    --btn-image: var(--dark-btn-image);
+  }
+  .theme-btn[data-theme='dark'].dark {
+    --btn-image: var(--light-btn-image);
+  }
+
+  /** -- MinCard */
+
+  .min-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    background-color: var(--fg-color);
+    color: var(--bg-color);
+    content-visibility: auto;
+    min-width: 13.5rem;
+  }
+  .min-card > img {
+    width: 13.5rem;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+  }
+  .min-card > figcaption {
+    display: grid;
+    justify-items: center;
+    gap: 0.5rem;
+    min-height: 2.8rem;
+  }
+
+  /** -- Skeleton */
+
+  .min-card-skeleton {
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    background-color: var(--fg-color);
+  }
+  .min-card-skeleton::before,
+  .min-card-skeleton::after {
+    content: '';
+    display: block;
+    border-radius: 0.5rem;
+    background-image: linear-gradient(to right, lightgray, gray, lightgray);
+    background-size: 800%;
+    background-position: 0% 50%;
+    background-repeat: repeat-x;
+    animation: skeleton-loading 9s linear infinite 1s;
+  }
+  .min-card-skeleton::before {
+    width: 192px;
+    height: 261px;
+  }
+  .min-card-skeleton::after {
+    width: 192px;
+    height: 2rem;
+  }
+  @keyframes skeleton-loading {
+    to {
+      background-position: 800% 50%;
+    }
+  }
+
+  /** -- Catalog Section */
+
+  .catalog-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 3rem;
+    max-width: 100%;
+  }
+  .catalog-section > div {
+    position: relative;
+    min-width: 256px;
+    max-width: min(var(--lg), 100%);
+  }
+  .catalog-section .catalog-list {
+    list-style: none;
+    display: flex;
+    align-items: last baseline;
+    justify-content: center;
+    gap: 1rem;
+    overflow: hidden;
+    max-width: min(var(--lg), 80%);
+    margin-inline: auto;
+  }
+  .catalog-section .catalog-list > li {
+    transform: scale(0.95);
+    transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+  }
+  .catalog-section .catalog-list > li:hover {
+    transform: scale(1);
+  }
+  .catalog-section .catalog-list > li:has(~ li:hover),
+  .catalog-section .catalog-list > li:hover ~ li {
+    filter: brightness(0.75);
+  }
+  .catalog-section button {
+    position: absolute;
+    top: 50%;
+    translate: 0 -50%;
+    display: grid;
+    place-items: center;
+    font-size: larger;
+    width: 3rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: none;
+    background: none;
+    cursor: pointer;
+    background-color: var(--tertiary-color);
+    color: var(--dark-color);
+  }
+  .catalog-section button:hover {
+    box-shadow: 0 0 0.5rem var(--tertiary-color);
+  }
+  .catalog-section button:active {
+    box-shadow: none;
+    transform: scale(0.9);
+  }
+  .catalog-section .catalog-section__prev-button {
+    left: 1rem;
+  }
+  .catalog-section .catalog-section__next-button {
+    right: 1rem;
+  }
 }

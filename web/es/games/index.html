@@ -7,9 +7,11 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <script src="/scripts/games.js" type="module"></script>
+    <script type="module" src="/scripts/switch-theme.js"></script>
 
     <link rel="stylesheet" href="/styles/index.css" />
     <link rel="stylesheet" href="/styles/utility-classes.css" />
+    <link rel="stylesheet" href="/styles/components.css" />
 
     <meta
       name="description"
@@ -50,6 +52,7 @@
           <li><a href="/es/games" class="active-link">Juegos</a></li>
           <li><a href="/es/movies">Pelis</a></li>
           <li><a href="/es/series">Series</a></li>
+          <li><button class="theme-btn"></button></li>
         </ul>
       </nav>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1366 78.84">
@@ -85,9 +88,251 @@
       </svg>
     </header>
 
-    <main aria-details="This is the catalog main">
+    <main aria-details="This is the games main">
       <article class="large-section">
-        <ul class="games-list"></ul>
+        <aside
+          class="forms-aside padding-md border-bottom-1-primary-solid"
+          aria-details="This is the filter section"
+          aria-label="Filter"
+          aria-labelledby="Filter"
+        >
+          <form class="request-form">
+            <label>
+              Obtener juegos del carrito
+              <button
+                type="submit"
+                class="get-games-btn"
+                aria-label="Get game button"
+                aria-labelledby="Button"
+                title="Obtener juegos"
+              >
+                Enviar mensaje
+              </button>
+            </label>
+          </form>
+          <search role="search" class="search-form">
+            <label>
+              Buscar juegos
+              <div role="group" class="search-input">
+                <input type="text" placeholder="GTA, Assassin's Creed..." />
+                <button
+                  class="search-btn"
+                  aria-label="Search"
+                  aria-labelledby="Button"
+                  title="Search games"
+                >
+                  <svg
+                    class="w-6 h-6 text-gray-800 dark:text-white"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-width="2"
+                      d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"
+                    />
+                  </svg>
+                </button>
+                <button
+                  class="reset-search-btn hidden"
+                  aria-label="Reset"
+                  aria-labelledby="Button"
+                  title="Reset search filter"
+                >
+                  <svg
+                    class="w-6 h-6 text-gray-800 dark:text-white"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </label>
+          </search>
+          <label>
+            Filtrar juegos
+            <input type="checkbox" />
+          </label>
+          <form class="filter-form" id="filters" novalidate spellcheck="false">
+            <select name="stateSelect" id="filter-state">
+              <option value="all">Todos los juegos</option>
+              <option value="inCart">En el carrito</option>
+              <option value="outCart">Fuera del carrito</option>
+            </select>
+            <select name="platformSelect" id="filter-platform">
+              <option value="all">Todas las plataformas</option>
+              <option value="pc">PC</option>
+            </select>
+            <label>
+              Precio mínimo:
+              <input
+                type="number"
+                name="minPrice"
+                id="filter-min-price"
+                min="0"
+                max="500"
+                value="0"
+                step="0.5"
+              />
+            </label>
+            <label>
+              Precio máximo:
+              <input
+                type="number"
+                name="maxPrice"
+                id="filter-max-price"
+                min="0"
+                max="500"
+                value="500"
+                step="0.5"
+              />
+            </label>
+            <fieldset id="filter-genres">
+              <legend>Géneros</legend>
+              <label>
+                Acción
+                <input type="checkbox" name="action" />
+              </label>
+              <label>
+                Aventura
+                <input type="checkbox" name="adventure" />
+              </label>
+              <label>
+                Arcade
+                <input type="checkbox" name="arcade" />
+              </label>
+              <label>
+                Plataforma
+                <input type="checkbox" name="platform" />
+              </label>
+              <label>
+                Puzzle
+                <input type="checkbox" name="puzzle" />
+              </label>
+              <label>
+                Rol
+                <input type="checkbox" name="rol" />
+              </label>
+              <label>
+                Simulación
+                <input type="checkbox" name="simulation" />
+              </label>
+              <label>
+                Deportes
+                <input type="checkbox" name="sports" />
+              </label>
+              <label>
+                Estrategia
+                <input type="checkbox" name="strategy" />
+              </label>
+              <label>
+                Fantasía
+                <input type="checkbox" name="fantasy" />
+              </label>
+              <label>
+                Indie
+                <input type="checkbox" name="indie" />
+              </label>
+              <label>
+                Isométrico
+                <input type="checkbox" name="isometric" />
+              </label>
+              <label>
+                Sigilo
+                <input type="checkbox" name="stealth" />
+              </label>
+              <label>
+                Supervivencia
+                <input type="checkbox" name="survival" />
+              </label>
+              <label>
+                Mundo Abierto
+                <input type="checkbox" name="openWorld" />
+              </label>
+              <label>
+                RPG
+                <input type="checkbox" name="rpg" />
+              </label>
+            </fieldset>
+            <label>
+              Tamaño mínimo (GB):
+              <input
+                type="number"
+                name="minSize"
+                min="0"
+                max="100"
+                value="0"
+                step="0.05"
+              />
+            </label>
+            <label>
+              Tamaño máximo (GB):
+              <input
+                type="number"
+                name="maxSize"
+                min="0"
+                max="200"
+                value="200"
+                step="0.05"
+              />
+            </label>
+            <label>
+              Aplicando filtros
+              <input type="checkbox" name="applyCheck" id="filter-apply" />
+            </label>
+          </form>
+        </aside>
+        <ul
+          class="games-list no-list grid grid-wrap col-md justify-center gap-md padding-md"
+        >
+          <li
+            class="min-card-skeleton"
+            aria-label="Loading"
+            title="Loading..."
+            aria-details="This is a skeleton"
+          ></li>
+          <li
+            class="min-card-skeleton"
+            aria-label="Loading"
+            title="Loading..."
+            aria-details="This is a skeleton"
+          ></li>
+          <li
+            class="min-card-skeleton"
+            aria-label="Loading"
+            title="Loading..."
+            aria-details="This is a skeleton"
+          ></li>
+          <li
+            class="min-card-skeleton"
+            aria-label="Loading"
+            title="Loading..."
+            aria-details="This is a skeleton"
+          ></li>
+          <li
+            class="min-card-skeleton"
+            aria-label="Loading"
+            title="Loading..."
+            aria-details="This is a skeleton"
+          ></li>
+        </ul>
+        <aside class="games-sidebar hidden"></aside>
       </article>
     </main>
 
@@ -126,7 +371,7 @@
       <p>
         Made with ❤️ by
         <a
-          href="https://twitter.com/lazaroparragonz"
+          href="https://x.com/Lachy9716929882"
           target="_blank"
           rel="noopener noreferrer"
           >Lázaro Parra</a
