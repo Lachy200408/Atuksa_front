@@ -7,6 +7,7 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <script src="/scripts/landing.js" type="module"></script>
+    <script type="module" src="/scripts/switch-theme.js"></script>
 
     <link rel="stylesheet" href="/styles/index.css" />
     <link rel="stylesheet" href="/styles/utility-classes.css" />
@@ -51,6 +52,7 @@
           <li><a href="/es/games">Juegos</a></li>
           <li><a href="/es/movies">Pelis</a></li>
           <li><a href="/es/series">Series</a></li>
+          <li><button class="theme-btn"></button></li>
         </ul>
       </nav>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1366 78.84">
@@ -90,7 +92,42 @@
       <article class="games-section catalog-section large-section">
         <h2 class="text-xl">Juegos</h2>
         <div role="group">
-          <ul id="games" class="catalog-list"></ul>
+          <ul
+            id="games"
+            class="catalog-list"
+            aria-details="This is the games list"
+          >
+            <li
+              class="min-card-skeleton"
+              aria-label="Loading"
+              title="Loading..."
+              aria-details="This is a skeleton"
+            ></li>
+            <li
+              class="min-card-skeleton"
+              aria-label="Loading"
+              title="Loading..."
+              aria-details="This is a skeleton"
+            ></li>
+            <li
+              class="min-card-skeleton"
+              aria-label="Loading"
+              title="Loading..."
+              aria-details="This is a skeleton"
+            ></li>
+            <li
+              class="min-card-skeleton"
+              aria-label="Loading"
+              title="Loading..."
+              aria-details="This is a skeleton"
+            ></li>
+            <li
+              class="min-card-skeleton"
+              aria-label="Loading"
+              title="Loading..."
+              aria-details="This is a skeleton"
+            ></li>
+          </ul>
           <button
             class="catalog-section__prev-button"
             aria-labelledby="Button"
@@ -109,52 +146,54 @@
           </button>
         </div>
       </article>
-      <article
-        class="movies-section catalog-section large-section bg-light-secondary"
-      >
-        <h2 class="text-dark text-xl">Películas</h2>
-        <div role="group">
-          <ul id="movies" class="catalog-list"></ul>
-          <button
-            class="catalog-section__prev-button"
-            aria-labelledby="Button"
-            aria-label="Prev item"
-            title="Previous Item"
-          >
-            ←
-          </button>
-          <button
-            class="catalog-section__next-button"
-            aria-labelledby="Button"
-            aria-label="Next item"
-            title="Next Item"
-          >
-            →
-          </button>
-        </div>
-      </article>
-      <article class="series-section catalog-section large-section">
-        <h2 class="text-xl">Series</h2>
-        <div role="group">
-          <ul id="series" class="catalog-list"></ul>
-          <button
-            class="catalog-section__prev-button"
-            aria-labelledby="Button"
-            aria-label="Prev item"
-            title="Previous Item"
-          >
-            ←
-          </button>
-          <button
-            class="catalog-section__next-button"
-            aria-labelledby="Button"
-            aria-label="Next item"
-            title="Next Item"
-          >
-            →
-          </button>
-        </div>
-      </article>
+      <template>
+        <article
+          class="movies-section catalog-section large-section bg-light-secondary"
+        >
+          <h2 class="text-dark text-xl">Películas</h2>
+          <div role="group">
+            <ul id="movies" class="catalog-list"></ul>
+            <button
+              class="catalog-section__prev-button"
+              aria-labelledby="Button"
+              aria-label="Prev item"
+              title="Previous Item"
+            >
+              ←
+            </button>
+            <button
+              class="catalog-section__next-button"
+              aria-labelledby="Button"
+              aria-label="Next item"
+              title="Next Item"
+            >
+              →
+            </button>
+          </div>
+        </article>
+        <article class="series-section catalog-section large-section">
+          <h2 class="text-xl">Series</h2>
+          <div role="group">
+            <ul id="series" class="catalog-list"></ul>
+            <button
+              class="catalog-section__prev-button"
+              aria-labelledby="Button"
+              aria-label="Prev item"
+              title="Previous Item"
+            >
+              ←
+            </button>
+            <button
+              class="catalog-section__next-button"
+              aria-labelledby="Button"
+              aria-label="Next item"
+              title="Next Item"
+            >
+              →
+            </button>
+          </div>
+        </article>
+      </template>
     </main>
 
     <footer aria-details="This is the footer">
@@ -192,7 +231,7 @@
       <p>
         Made with ❤️ by
         <a
-          href="https://twitter.com/lazaroparragonz"
+          href="https://x.com/Lachy9716929882"
           target="_blank"
           rel="noopener noreferrer"
           >Lázaro Parra</a
