@@ -2,3 +2,4 @@
 .DS_Store
 *.ai
 catalog-site
+**/dev-catalog-site
