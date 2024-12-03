@@ -236,6 +236,22 @@
     height: max-content;
   }
 
+  .w-xs {
+    width: 64px;
+  }
+  .w-sm {
+    width: 128px;
+  }
+  .w-md {
+    width: 256px;
+  }
+  .w-lg {
+    width: 384px;
+  }
+  .w-xl {
+    width: 512px;
+  }
+
   /** -- Spacing */
 
   *[class*='gap'] {
