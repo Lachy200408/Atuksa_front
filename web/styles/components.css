@@ -1,4 +1,77 @@
 @layer components {
+  /** -- Gradient text */
+
+  .gradient-text {
+    background: linear-gradient(
+      to right,
+      var(--primary-color),
+      var(--secondary-color),
+      var(--tertiary-color),
+      var(--quaternary-color)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /** -- Landing section */
+
+  .landing-section {
+    position: relative;
+    overflow: hidden;
+  }
+  .landing-section::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    translate: -50% 50%;
+    width: 384px;
+    aspect-ratio: 8 / 1;
+    background: var(--primary-color);
+    border-radius: 50%;
+    filter: blur(64px);
+    opacity: 0.75;
+  }
+  .landing-section,
+  .landing-section > hgroup {
+    display: grid;
+    align-content: center;
+    justify-items: center;
+    gap: 2rem;
+  }
+  .landing-section > hgroup {
+    opacity: 0;
+    gap: 0;
+    font-size: 4rem;
+    animation: fadeIn 0.2s linear 1s forwards;
+  }
+  .landing-section > figure {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 2rem;
+  }
+  .landing-section > figure > img {
+    opacity: 0;
+    width: auto;
+    height: 128px;
+    object-fit: contain;
+    animation: fadeIn 0.2s linear forwards;
+    filter: drop-shadow(0 0 0.25rem var(--primary-color));
+  }
+  .landing-section > figure > img:first-child {
+    animation-delay: 0.25s;
+  }
+  .landing-section > figure > img:nth-child(2) {
+    translate: -1rem 0;
+    animation-delay: 0.5s;
+  }
+  .landing-section > figure > img:last-child {
+    animation-delay: 0.75s;
+  }
+
   /** -- Forms aside */
 
   .forms-aside {
