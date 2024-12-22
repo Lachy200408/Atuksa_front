@@ -6,5 +6,6 @@
 - [x] Add the filter games feature
 - [x] Add the search games feature
 - [x] Add the get games feature
+- [] Repair the search games feature
 - [] Add the sort games feature
 - [] Add the pagination games feature
