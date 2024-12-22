@@ -450,4 +450,22 @@
   .text-dark-secondary {
     color: var(--dark-secondary-color);
   }
+
+  /** -- Filters */
+
+  .blur-xs {
+    filter: blur(0.25rem);
+  }
+  .blur-sm {
+    filter: blur(0.5rem);
+  }
+  .blur-md {
+    filter: blur(1rem);
+  }
+  .blur-lg {
+    filter: blur(2rem);
+  }
+  .blur-xl {
+    filter: blur(4rem);
+  }
 }
