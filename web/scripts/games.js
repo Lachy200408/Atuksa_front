@@ -188,6 +188,8 @@ const onSearchGameClick = () => {
 }
 
 const onResetSearchGameClick = () => {
+  const $input = $('.search-form input')
+  $input.value = null
   setSearchFilter(null)
 }
 
