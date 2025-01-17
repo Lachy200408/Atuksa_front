@@ -20,7 +20,7 @@ export const renderList = (destination, list, render) => {
 //* Create the HTML
 
 export const minGameRender = ({ name, image }) => `
-	<figure class="min-card" aria-details="This is the game ${name}" aria-label="${name}">
+	<figure class="min-card-landing" aria-details="This is the game ${name}" aria-label="${name}">
 		<img
 			src="${image}"
 			alt="${name}"
