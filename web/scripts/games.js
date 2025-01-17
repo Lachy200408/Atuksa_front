@@ -261,7 +261,7 @@ const onSetEventLstner = () => {
   $$('.remove-from-cart-btn').forEach(
     (btn) => (btn.onclick = onRemoveFromCartClick)
   )
-  $('.request-form .get-games-btn').onclick = onGetGamesClick
+  $('.request-form .get-buy-btn').onclick = onGetGamesClick
 }
 
 //* Filter event handlers
