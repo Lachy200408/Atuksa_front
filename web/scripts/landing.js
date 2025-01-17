@@ -37,8 +37,9 @@ fetchCatalog('games', (data) => {
 const handleClickOnList = (callback) => {
   return (e) => {
     const $button = e.target
-    const $sectionList =
-      $button.parentElement.parentElement.querySelector('.catalog-list')
+    const $sectionList = $button
+      .closest('.catalog-section')
+      .querySelector('.catalog-list')
 
     callback($sectionList)
   }
