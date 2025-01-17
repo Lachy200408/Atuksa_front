@@ -1,4 +1,21 @@
 @layer components {
+  /** -- Get Buy Button */
+
+  .get-buy-btn {
+    position: relative;
+  }
+  .get-buy-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    translate: 35% -35%;
+    width: 1.5rem;
+    aspect-ratio: 1;
+    background-image: url('/assets/whatsapp-icon.svg');
+    z-index: 5;
+  }
+
   /** -- Gradient text */
 
   .gradient-text {
@@ -104,7 +121,7 @@
     flex-wrap: wrap;
   }
   .landing-section > div:nth-child(2) > hgroup:last-child > h6 {
-    padding: 4rem;
+    padding: 2.5rem 1.5rem;
     border-radius: 1rem;
     box-shadow: 0 0 0.5rem var(--primary-color);
     background-color: color-mix(in srgb, var(--primary-color), transparent 95%);
@@ -155,17 +172,14 @@
     z-index: -5;
     border-radius: 50%;
   }
-  .landing-section > div:nth-child(3) > figure > svg:first-child {
-    width: 16rem;
-  }
-  .landing-section > div:nth-child(3) > figure > svg:last-child {
-    height: 16rem;
+  .landing-section > div:nth-child(3) > figure > svg {
+    height: min(16rem, 30dvw);
   }
   .landing-section > canvas {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: -5;
+    z-index: -10;
     display: none;
     opacity: 0;
     animation: fadeIn 0.2s linear 1s forwards;
@@ -181,6 +195,63 @@
     }
     html.dark .landing-section > canvas {
       display: none;
+    }
+  }
+  @media only screen and (max-width: 768px) {
+    .landing-section > div:first-child > hgroup {
+      font-size: 3rem;
+      text-align: center;
+    }
+    .landing-section > div:first-child > figure > img {
+      --img-filter: brightness(0.95)
+        drop-shadow(0 0 0.25rem var(--primary-color)) blur(0.25rem);
+      z-index: -5;
+    }
+    .landing-section > div:first-child > figure > img:first-child {
+      position: absolute;
+      top: 20%;
+      left: 0;
+      translate: -12vw -50%;
+      rotate: -15deg;
+      filter: var(--img-filter);
+    }
+    .landing-section > div:first-child > figure > img:nth-child(2) {
+      position: absolute;
+      top: 20%;
+      right: 7.5%;
+      translate: calc(-50% - 1rem) -50%;
+      filter: var(--img-filter);
+      rotate: 15deg;
+    }
+    .landing-section > div:first-child > figure > img:last-child {
+      position: absolute;
+      top: 80%;
+      right: 0;
+      translate: 14vw -50%;
+      rotate: 30deg;
+      filter: var(--img-filter);
+    }
+    .landing-section > div:is(:nth-child(2), :nth-child(3)) > hgroup {
+      font-size: 2.5rem;
+    }
+  }
+  @media only screen and (max-width: 512px) {
+    .landing-section > div:first-child > figure > img {
+      height: 92px;
+    }
+    .landing-section > div:first-child > figure > img:nth-child(2) {
+      right: 2%;
+      translate: 0 -50%;
+    }
+    .landing-section > div:nth-child(2) > hgroup:last-child {
+      flex-wrap: nowrap;
+      gap: 2rem;
+      max-width: 100dvw;
+      width: 100%;
+      flex-direction: column;
+    }
+    .landing-section > div:nth-child(2) > hgroup:last-child > h6 {
+      padding: 1rem;
     }
   }
 
@@ -550,7 +621,8 @@
 
   /** -- MinCard */
 
-  .min-card {
+  .min-card,
+  .min-card-landing {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -562,6 +634,9 @@
     color: var(--bg-color);
     content-visibility: auto;
     min-width: 13.5rem;
+  }
+  .min-card-landing {
+    content-visibility: visible;
   }
   .min-card > img {
     width: 13.5rem;
@@ -648,7 +723,7 @@
   .catalog-section .catalog-list {
     list-style: none;
     display: flex;
-    align-items: last baseline;
+    align-items: center;
     justify-content: center;
     gap: 1rem;
     overflow: hidden;
@@ -672,7 +747,6 @@
     translate: 0 -50%;
     display: grid;
     place-items: center;
-    font-size: larger;
     width: 3rem;
     aspect-ratio: 1;
     border-radius: 50%;
@@ -689,10 +763,25 @@
     box-shadow: none;
     transform: scale(0.9);
   }
+  .catalog-section button > svg {
+    width: 1.5rem;
+  }
   .catalog-section .catalog-section__prev-button {
     left: 1rem;
   }
   .catalog-section .catalog-section__next-button {
     right: 1rem;
+  }
+  @media only screen and (max-width: 768px) {
+    .catalog-section .catalog-list > li:hover {
+      transform: scale(0.95);
+    }
+    .catalog-section .catalog-list > li:has(~ li:hover),
+    .catalog-section .catalog-list > li:hover ~ li {
+      filter: brightness(1);
+    }
+    .catalog-section button:hover {
+      box-shadow: none;
+    }
   }
 }
