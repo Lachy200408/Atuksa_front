@@ -6,18 +6,18 @@ import {
   completeGameRender,
 } from '/scripts/renders.js'
 import {
-  GAME_EVENTS,
-  GAME_DATA_VALUES,
+  CATALOG_EVENTS,
+  GAME_FILTER_DATA_VALUES,
   GAME_FILTER_FORM_DEFAULT_VALUES,
 } from '/scripts/constants.js'
 
-const RENDER_CART_EVENT = new Event(GAME_EVENTS.ON_CHANGE_CART)
-const RENDER_EVENT = new Event(GAME_EVENTS.ON_RENDER)
-const LSTNER_EVENT = new Event(GAME_EVENTS.ON_SET_EVENT_LSTNER)
-const FILTER_EVENT = new Event(GAME_EVENTS.ON_FILTER)
-const SHOW_SIDEBAR_EVENT = new Event(GAME_EVENTS.ON_SHOW_SIDEBAR)
-const HIDE_SIDEBAR_EVENT = new Event(GAME_EVENTS.ON_HIDE_SIDEBAR)
-const CHANGE_SEARCH_EVENT = new Event(GAME_EVENTS.ON_CHANGE_SEARCH)
+const RENDER_CART_EVENT = new Event(CATALOG_EVENTS.ON_CHANGE_CART)
+const RENDER_EVENT = new Event(CATALOG_EVENTS.ON_RENDER)
+const LSTNER_EVENT = new Event(CATALOG_EVENTS.ON_SET_EVENT_LSTNER)
+const FILTER_EVENT = new Event(CATALOG_EVENTS.ON_FILTER)
+const SHOW_SIDEBAR_EVENT = new Event(CATALOG_EVENTS.ON_SHOW_SIDEBAR)
+const HIDE_SIDEBAR_EVENT = new Event(CATALOG_EVENTS.ON_HIDE_SIDEBAR)
+const CHANGE_SEARCH_EVENT = new Event(CATALOG_EVENTS.ON_CHANGE_SEARCH)
 
 let gamesData = []
 let cart = []
@@ -114,15 +114,17 @@ const setFilteredData = () => {
           game.metadata.genres.some((genre) =>
             genres.some(([name, value]) => value && name === genre)
           )) &&
-        (platform === GAME_DATA_VALUES.all ||
+        (platform === GAME_FILTER_DATA_VALUES.all ||
           game.metadata.platform === platform) &&
         game.price >= minPrice &&
         game.price <= maxPrice &&
         game.metadata.size >= minSize &&
         game.metadata.size <= maxSize &&
-        (state === GAME_DATA_VALUES.all ||
-          (state === GAME_DATA_VALUES.inCart && cart.includes(game.id)) ||
-          (state === GAME_DATA_VALUES.outCart && !cart.includes(game.id)))
+        (state === GAME_FILTER_DATA_VALUES.all ||
+          (state === GAME_FILTER_DATA_VALUES.inCart &&
+            cart.includes(game.id)) ||
+          (state === GAME_FILTER_DATA_VALUES.outCart &&
+            !cart.includes(game.id)))
       )
     })
   } else {
@@ -140,14 +142,14 @@ const setFilteredData = () => {
 const addToCart = (id) => {
   cart.push(id)
   dpEvnt(RENDER_CART_EVENT)
-  if (isApplyingFilters && filters.state !== GAME_DATA_VALUES.all)
+  if (isApplyingFilters && filters.state !== GAME_FILTER_DATA_VALUES.all)
     dpEvnt(FILTER_EVENT)
 }
 
 const removeFromCart = (id) => {
   cart = cart.filter((_id) => _id !== id)
   dpEvnt(RENDER_CART_EVENT)
-  if (isApplyingFilters && filters.state !== GAME_DATA_VALUES.all)
+  if (isApplyingFilters && filters.state !== GAME_FILTER_DATA_VALUES.all)
     dpEvnt(FILTER_EVENT)
 }
 
@@ -306,14 +308,14 @@ const onSetSearchFormEventLstner = () => {
 
 //* Entry point
 
-sign(GAME_EVENTS.ON_CHANGE_CART, onRenderCart)
-sign(GAME_EVENTS.ON_RENDER, onRender)
-sign(GAME_EVENTS.ON_SET_EVENT_LSTNER, onSetEventLstner)
-sign(GAME_EVENTS.ON_SET_EVENT_LSTNER, onSetFilterFormEventLstner)
-sign(GAME_EVENTS.ON_SET_EVENT_LSTNER, onSetSearchFormEventLstner)
-sign(GAME_EVENTS.ON_CHANGE_SEARCH, onChangeSearch)
-sign(GAME_EVENTS.ON_FILTER, setFilteredData)
-sign(GAME_EVENTS.ON_SHOW_SIDEBAR, onShowSidebar)
-sign(GAME_EVENTS.ON_HIDE_SIDEBAR, onHideSidebar)
+sign(CATALOG_EVENTS.ON_CHANGE_CART, onRenderCart)
+sign(CATALOG_EVENTS.ON_RENDER, onRender)
+sign(CATALOG_EVENTS.ON_SET_EVENT_LSTNER, onSetEventLstner)
+sign(CATALOG_EVENTS.ON_SET_EVENT_LSTNER, onSetFilterFormEventLstner)
+sign(CATALOG_EVENTS.ON_SET_EVENT_LSTNER, onSetSearchFormEventLstner)
+sign(CATALOG_EVENTS.ON_CHANGE_SEARCH, onChangeSearch)
+sign(CATALOG_EVENTS.ON_FILTER, setFilteredData)
+sign(CATALOG_EVENTS.ON_SHOW_SIDEBAR, onShowSidebar)
+sign(CATALOG_EVENTS.ON_HIDE_SIDEBAR, onHideSidebar)
 
 fetchCatalog('games', setGamesData)
