@@ -6,9 +6,12 @@
     <title>Atuksa | Pelis</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
+    <script src="/scripts/movies.js" type="module"></script>
     <script type="module" src="/scripts/switch-theme.js"></script>
 
     <link rel="stylesheet" href="/styles/index.css" />
+    <link rel="stylesheet" href="/styles/utility-classes.css" />
+    <link rel="stylesheet" href="/styles/components.css" />
 
     <meta
       name="description"
@@ -85,7 +88,254 @@
       </svg>
     </header>
 
-    <main></main>
+    <main aria-details="This is the movies main">
+      <article class="large-section">
+        <aside
+          class="forms-aside padding-md border-bottom-1-primary-solid"
+          aria-details="This is the filter section"
+          aria-label="Filter"
+          aria-labelledby="Filter"
+        >
+          <form class="request-form">
+            <label>
+              Obtener películas del carrito
+              <button
+                type="submit"
+                class="get-buy-btn"
+                aria-label="Get movie button"
+                aria-labelledby="Button"
+                title="Obtener películas"
+              >
+                Enviar mensaje
+              </button>
+            </label>
+          </form>
+          <search role="search" class="search-form">
+            <label>
+              Buscar películas
+              <div role="group" class="search-input">
+                <input
+                  type="text"
+                  placeholder="Avengers, Pirates of Caribbean..."
+                />
+                <button
+                  class="search-btn"
+                  aria-label="Search"
+                  aria-labelledby="Button"
+                  title="Buscar películas"
+                >
+                  <svg
+                    class="w-6 h-6 text-gray-800 dark:text-white"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-width="2"
+                      d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"
+                    />
+                  </svg>
+                </button>
+                <button
+                  class="reset-search-btn hidden"
+                  aria-label="Reset"
+                  aria-labelledby="Button"
+                  title="Resetear filtro de búsqueda"
+                >
+                  <svg
+                    class="w-6 h-6 text-gray-800 dark:text-white"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </label>
+          </search>
+          <label>
+            Filtrar películas
+            <input type="checkbox" />
+          </label>
+          <form class="filter-form" id="filters" novalidate spellcheck="false">
+            <select name="stateSelect" id="filter-state">
+              <option value="all">Todas las películas</option>
+              <option value="inCart">En el carrito</option>
+              <option value="outCart">Fuera del carrito</option>
+            </select>
+            <select name="languageSelect" id="filter-language">
+              <option value="all">Todos los idiomas</option>
+              <option value="es">Español</option>
+              <option value="en">Inglés</option>
+              <option value="pt">Portugués</option>
+              <option value="fr">Francés</option>
+              <option value="de">Alemán</option>
+              <option value="it">Italiano</option>
+              <option value="ru">Ruso</option>
+            </select>
+            <label>
+              Precio mínimo:
+              <input
+                type="number"
+                name="minPrice"
+                id="filter-min-price"
+                min="0"
+                max="500"
+                value="0"
+                step="0.5"
+              />
+            </label>
+            <label>
+              Precio máximo:
+              <input
+                type="number"
+                name="maxPrice"
+                id="filter-max-price"
+                min="0"
+                max="500"
+                value="500"
+                step="0.5"
+              />
+            </label>
+            <fieldset id="filter-genres">
+              <legend>Géneros</legend>
+              <label>
+                Acción
+                <input type="checkbox" name="action" />
+              </label>
+              <label>
+                Aventura
+                <input type="checkbox" name="adventure" />
+              </label>
+              <label>
+                Drama
+                <input type="checkbox" name="drama" />
+              </label>
+              <label>
+                Terror
+                <input type="checkbox" name="terror" />
+              </label>
+              <label>
+                Horror
+                <input type="checkbox" name="horror" />
+              </label>
+              <label>
+                Fantasía
+                <input type="checkbox" name="fantasy" />
+              </label>
+              <label>
+                Misterio
+                <input type="checkbox" name="mystery" />
+              </label>
+              <label>
+                Romance
+                <input type="checkbox" name="romance" />
+              </label>
+              <label>
+                Ciencia Ficción
+                <input type="checkbox" name="sci-fi" />
+              </label>
+              <label>
+                Thriller
+                <input type="checkbox" name="thriller" />
+              </label>
+              <label>
+                Guerra
+                <input type="checkbox" name="war" />
+              </label>
+              <label>
+                Western
+                <input type="checkbox" name="western" />
+              </label>
+              <label>
+                Comedia
+                <input type="checkbox" name="comedy" />
+              </label>
+              <label>
+                Documental
+                <input type="checkbox" name="documentary" />
+              </label>
+            </fieldset>
+            <label>
+              Tamaño mínimo (GB):
+              <input
+                type="number"
+                name="minSize"
+                min="0"
+                max="100"
+                value="0"
+                step="0.05"
+              />
+            </label>
+            <label>
+              Tamaño máximo (GB):
+              <input
+                type="number"
+                name="maxSize"
+                min="0"
+                max="200"
+                value="200"
+                step="0.05"
+              />
+            </label>
+            <label>
+              Aplicando filtros
+              <input type="checkbox" name="applyCheck" id="filter-apply" />
+            </label>
+          </form>
+        </aside>
+        <ul
+          class="movies-list no-list grid grid-wrap col-md justify-center gap-md padding-md"
+        >
+          <li
+            class="min-card-skeleton"
+            aria-label="Loading"
+            title="Loading..."
+            aria-details="This is a skeleton"
+          ></li>
+          <li
+            class="min-card-skeleton"
+            aria-label="Loading"
+            title="Loading..."
+            aria-details="This is a skeleton"
+          ></li>
+          <li
+            class="min-card-skeleton"
+            aria-label="Loading"
+            title="Loading..."
+            aria-details="This is a skeleton"
+          ></li>
+          <li
+            class="min-card-skeleton"
+            aria-label="Loading"
+            title="Loading..."
+            aria-details="This is a skeleton"
+          ></li>
+          <li
+            class="min-card-skeleton"
+            aria-label="Loading"
+            title="Loading..."
+            aria-details="This is a skeleton"
+          ></li>
+        </ul>
+        <aside class="movies-sidebar hidden"></aside>
+      </article>
+    </main>
 
     <footer aria-details="This is the footer">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1366 78.84">
