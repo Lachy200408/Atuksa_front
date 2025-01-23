@@ -39,7 +39,7 @@
     flex-direction: column;
     position: relative;
     overflow: hidden;
-    height: 256dvh;
+    height: 256vh;
   }
   .landing-section > div {
     min-height: 33%;
